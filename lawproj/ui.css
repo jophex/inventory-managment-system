@@ -1,0 +1,119 @@
+
+    *{
+        padding: 0px;
+        margin: 0px;
+        
+    }
+    
+    
+.sidepage{
+    height: 550px;
+    width: 200px;
+    background-color: rgb(16, 38, 238);
+    color: rgb(6, 224, 53);
+    
+     
+ }
+ .sidepage p{
+     padding: 12px;
+ }
+
+ a{
+    color: rgb(22, 20, 22);
+
+    margin-top: 20px;
+    font-size: 18px;
+    font-family: arial;
+    font-weight: bold;
+    text-decoration: none;
+    transition: 0.4s ease-in-out;
+}
+
+a:hover{
+   
+    color: #c90f0f;
+}
+
+
+
+.header{
+    height: 100px;
+    width: 100%;
+    background-color: rgb(1, 20, 18) ;
+    display: flex;
+    
+
+}
+.header p{
+    padding-top: 5px;
+}
+
+.footer{
+    height: 20px;
+    width: 100%;
+    background-color: rgb(79, 226, 34);
+  
+    
+
+}
+
+.context{
+    height: 550px;
+    width: 100%;
+    background-color: rgba(221, 57, 221, 0.719);
+    display: flex;
+}
+.title{
+    width: 70%;
+    color: rgb(15, 235, 52);
+    padding-left: 3cm;
+    font-size: 34px;
+}
+.all_context{
+    
+    font-size: 28px;
+    padding: 5PX;
+    text-align: center;
+    
+}
+table{
+   
+    width: 100%;
+}
+.user{
+    background-color:  rgb(2, 14, 12);
+    padding-top: 1px;
+    border-spacing: 1px;
+}
+form{
+  
+    padding-left: 10cm;
+    padding-right: 10cm;
+    padding-top: 20px;
+      
+   
+}
+select,input{
+    border-radius: 5px;
+    width: 100px;
+    
+   
+}
+h4{
+    text-align: center;
+    padding-top: 10px;
+  
+    
+}
+label{
+    padding: 20px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-style: italic;
+    font-size: large;
+   
+}
+
+
+
+
+

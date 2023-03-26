@@ -1,0 +1,34 @@
+.form{
+    padding-left: 13cm;
+    padding-right: 10cm;
+    padding-top: 5cm;
+   
+    
+
+}
+input{
+    border-radius: 5px;
+    
+   
+}
+label{
+    padding: 10px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-style: italic;
+    font-size: large;
+   
+}
+p{
+    font-style: italic;
+    font-size: large;
+}
+body{
+    background-color: rgb(226, 175, 8);
+}
+.formpart{
+    background-color: rgb(5, 167, 167);
+    border-radius: 10px;
+ 
+    
+}
+  
