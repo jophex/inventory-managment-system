@@ -75,6 +75,7 @@ if(isset($_POST['add_device'])){
 
 
         $sql_table = "CREATE TABLE IF NOT EXISTS add_device (
+            id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
             device_name VARCHAR(255) NOT NULL,
             quantity INT(255) NOT NULL,
             device_type VARCHAR(255) NOT NULL,
@@ -89,9 +90,9 @@ if(isset($_POST['add_device'])){
     
         }
     
-        # ================SENDING DATA TO DATABASE================
+        # ================SENDING DATA TO DATABASE=====================
         
-        $sql = "INSERT INTO add_device VALUES ('$catdv', '$catquan', '$cattype', '$catcat')";
+        $sql = "INSERT INTO add_device VALUES ('ID', '$catdv', '$catquan', '$cattype', '$catcat')";
                                             
         #$stmt = mysqli_stmt_init($conn);
     

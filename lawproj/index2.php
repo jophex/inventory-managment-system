@@ -5,51 +5,59 @@ session_start();
 $catuser = "";
 $catphone = "";
 $catpass = "";
+$cat_depart = "";
 
 if(isset($_POST['reg_btn'])){
 
     $reg_user = $_POST['reg_name'];
     $reg_phone = $_POST['reg_phone'];
     $reg_pass = $_POST['reg_pass'];
+    $reg_depart = $_POST['depart'];
+
 
     
 
 
     $phone = "/^0[67][^346, ^02]\d{7}$/";
+    $number = 10;
     
-    #if(!empty($reg_user) && !empty($reg_phone) && !empty($reg_pass)){
+    if(!empty($reg_user) && !empty($reg_phone) && !empty($reg_pass) && !empty($reg_depart)){
 
         $reg_user = filter_var($reg_user, FILTER_SANITIZE_STRING);
 
             
         // Check if name is empty
         if($reg_user == ''){
-            $user_msg = 'check your name <br>'; 
+            $user_msg = 'check your name <br>';
+            
         } else {
             $catuser = $reg_user;
         }
         
         // Check if username is empty
-        if($reg_phone == '' || !preg_match($phone, $reg_phone)){
-            $phone_error = 'Please enter your phone <br>';
+        if(strlen($reg_phone) != $number || $reg_phone == '' || !preg_match($phone, $reg_phone)){
+            #$phone_error = 'Please enter your phone <br>';
         } 
         else{
             $catphone = $reg_phone;
-
-        }
-        
-
-        // Check if passwords are empty
-        if($reg_pass == '' ){
-            $pases = 'Please enter passwords';
-            exit();
         }
 
-        else{
+        if($reg_pass == ''){
+            $reg_pass = 'check your password <br>';
+            
+        } else {
             $catpass = $reg_pass;
         }
 
-   # }
+
+        if($reg_depart == ''){
+            $reg_depart = 'enter department <br>';
+            
+        } else {
+            $cat_depart = $reg_depart;
+        }
+
+    }
 
 }
 
@@ -57,7 +65,7 @@ if(isset($_POST['reg_btn'])){
 #=============   DATABASE  ===============
     
 
-if($catuser != "" ||  $catphone != "" || $catpass != ""){
+
 
     $host = "localhost";
     $user = "root";
@@ -65,14 +73,14 @@ if($catuser != "" ||  $catphone != "" || $catpass != ""){
     $dbname = "NTstore";
 
 
-
-    $conn = new mysqli($host, $user, $pass, $dbname);
+    $conn = mysqli_connect($host, $user, $pass, $dbname);
+    #$conn = new mysqli($host, $user, $pass, $dbname);
 
 
     if (!$conn){
         die("connection failed: ". mysqli_connect_error());
     }
-        print "connected succeffully";
+      #  print "connected succeffully";
 
 
     # ========CREATING DATABASE IF NOT EXIST================
@@ -85,7 +93,7 @@ if($catuser != "" ||  $catphone != "" || $catpass != ""){
 
         if(mysqli_query($conn, $sql_base)){
 
-            print "database created succesfully";
+          #  print "database created succesfully";
 
     } else{
         die("Error creating database: ".mysqli_error($conn));
@@ -98,14 +106,15 @@ if($catuser != "" ||  $catphone != "" || $catpass != ""){
     # =======CREATING TABLE IN THE DATABASE IF NOT EXIST ============
 
 
-    $sql_table = "CREATE TABLE IF NOT EXISTS admin_store (
+    $sql_table = "CREATE TABLE IF NOT EXISTS users (
         name VARCHAR(30) NOT NULL,
         phone INT(12) NOT NULL,
+        department VARCHAR(30) NOT NULL,
         password VARCHAR(50) NOT NULL )";
 
     if(mysqli_query($conn, $sql_table)){
 
-        print "table created succesfully";
+        #print "table created succesfully";
 
     } else{
         die ("table not created: ". mysqli_error($conn));
@@ -114,7 +123,8 @@ if($catuser != "" ||  $catphone != "" || $catpass != ""){
 
     # ================SENDING DATA TO DATABASE================
     
-    $sql = "INSERT INTO admin_store VALUES ('$catuser', '$catphone', '$catpass')";
+if($catuser != "" ||  $catphone != "" || $catpass != "" || $cat_depart != ""){  
+    $sql = "INSERT INTO users VALUES ('$catuser', '$catphone', '$cat_depart' ,'$catpass')";
                                         
     #$stmt = mysqli_stmt_init($conn);
 
@@ -138,7 +148,7 @@ if($catuser != "" ||  $catphone != "" || $catpass != ""){
 
     if(mysqli_query($conn, $sql)){
 
-        print "data stored succesfully <br>";
+       # print "data stored succesfully <br>";
 
     } else{
         print "ERROR: $sql.". mysqli_error($conn);
@@ -148,14 +158,26 @@ if($catuser != "" ||  $catphone != "" || $catpass != ""){
 
     mysqli_close($conn);
 
-    header("Location: Admin page.html");
+   header("Location: Admin page.php");
     exit();
 
 }
 
 else{
-    print "please check your details";
+   # print "please check your details";
 }
 
-?>
 
+
+
+
+
+
+
+
+
+
+
+
+
+?>

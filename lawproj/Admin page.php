@@ -52,8 +52,8 @@
   <div class="ag-format-container">
     <div class="ag-courses_box">
 
-      <div class="ag-courses_item">
-        <a href="view_data.html" class="ag-courses-item_link">
+      <div class="ag-courses_item" name = "laptop">
+        <a href="view_data.php" class="ag-courses-item_link">
           <div class="ag-courses-item_bg"></div>
           <div class="ag-courses-item_title">
             LAPTOPS
@@ -68,7 +68,7 @@
         </a>
       </div>
   
-      <div class="ag-courses_item">
+      <div class="ag-courses_item" name="desktop">
         <a href="#" class="ag-courses-item_link">
           <div class="ag-courses-item_bg"></div>
   
