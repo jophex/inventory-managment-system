@@ -30,54 +30,48 @@
           </thead>
 
           <?php
-    #=========== displaying devices================
+          #=========== displaying devices================
 
-    $host = "localhost";
-    $user = "root";
-    $pass = "";
-    $dbname = "NTstore";
+          $host = 'localhost';
+          $user = 'root';
+          $pass = '';
+          $dbname = 'NTstore';
 
+          $conn = mysqli_connect($host, $user, $pass, $dbname);
 
-    $conn = mysqli_connect($host, $user, $pass, $dbname);
-    #$conn = new mysqli($host, $user, $pass, $dbname);
+          #$conn = new mysqli($host, $user, $pass, $dbname);
 
+          if (!$conn) {
+              die('connection failed: ' . mysqli_connect_error());
+          }
+          #  print "connected succeffully";
 
-    if (!$conn){
-        die("connection failed: ". mysqli_connect_error());
-    }
-    #  print "connected succeffully";
-
-
-    #if(isset($_POST['laptop'])){
+         # function display_devices($categorys){
         
-        $sql = "SELECT * FROM add_device WHERE category = 'laptop'";
-    
-        $records = $conn -> query($sql);
-    
-            if($records !== false && $records -> num_rows > 0){
-                while($row = mysqli_fetch_array($records)){
-    
-                        print   "<tbody>";
-                        print   "<tr>";
-                        print   "<td>".$row['id']."</td>";
-                        print   "<td>".$row['device_name']."</td>";
-                        print   "<td>".$row['quantity']."</td>";
-                        print   "<td>".$row['device_type']."</td>";
-                        print   "<td>".$row['category']."</td>";
-                        print   "</tr>";
+            $sql = "SELECT * FROM add_device"; #WHERE category = 'laptop'";
+
+            $records = $conn->query($sql);
+
+            if ($records !== false && $records->num_rows > 0) {
+                while ($row = mysqli_fetch_array($records)) {
+                    print '<tbody>';
+                    print '<tr>';
+                    print '<td>' . $row['id'] . '</td>';
+                    print '<td>' . $row['device_name'] . '</td>';
+                    print '<td>' . $row['quantity'] . '</td>';
+                    print '<td>' . $row['device_type'] . '</td>';
+                    print '<td>' . $row['category'] . '</td>';
+                    print '</tr>';
+                }
+            } else {
+                print 'no records found';
             }
-        }
-    #}
+        #}  
 
-        else{
-            print "no records found";
-        }
+      #  display_devices('desktop');
 
-        
         mysqli_close($conn);
-
-
-            ?>
+          ?>
 
 
         

@@ -4,51 +4,57 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="theme.min.css" />
+    <link rel="stylesheet" type="text/css" href="users.css" />
     <title>ADD DEVICE</title>
 </head>
 <body>
     
-</body><div class="container">
-  
-    <h2>ADDING DEVICES FORM<small>ADMIN</small></h2>
+</body>
+
+    <form class="form" action="device db.php" method="POST" enctype="multipart/form-data">
+      
+    <div class="container" >
+  <h1>ADMIN</h1>
+  <h2>ADD DEVICES</h2>
+    <fieldset class="form-fieldset ui-input __first">
+      <input type="text" id="username" tabindex="0" name="dvname" />
+      <label for="username">
+        <span data-text="Username">Device Name</span>
+      </label>
+    </fieldset>
     
-    <form action="device db.php" method="POST" enctype="multipart/form-data">
-      
-      <div class="group">      
-        <input type="text" required name="dvname">
-        <span class="highlight"></span>
-        <span class="bar"></span>
-        <label>Device Name</label>
-      </div>
-        
-      <div class="group">      
-        <input type="number" required name="quantity">
-        <span class="highlight"></span>
-        <span class="bar"></span>
-        <label>Quantity</label>
-      </div>
-
-      <div class="group">      
-        <input type="text" required name="type">
-        <span class="highlight"></span>
-        <span class="bar"></span>
-        <label>Device Type</label>
-      </div>
-
-      <div class="group">      
-        <input type="text" required name="cat">
-        <span class="highlight"></span>
-        <span class="bar"></span>
-        <label>Device category</label>
-      </div>
-      
-
-      <button title="add_device" type="submit" name="add_device">
-        <span>SUBMIT</span> 
-      </button>
+    <fieldset class="form-fieldset ui-input __second">
+      <input type="ext" id="email" tabindex="0" name="quantity" />
+      <label for="text">
+        <span data-text="E-mail Address">Quantity</span>
+      </label>
+    </fieldset>
+    
+    <fieldset class="form-fieldset ui-input __third">
+      <input type="text" id="new-password" name="type" />
+      <label for="text">
+        <span data-text="New Password">Device Type</span>
+      </label>
+    </fieldset>
+    
+    <fieldset class="form-fieldset ui-input __fourth">
+      <input type="text" id="repeat-new-password" name="cat" />
+      <label for="text">
+        <span data-text="Repeat New Password">Device category</span>
+      </label>
+    </fieldset>
+    
+    <div class="form-footer">
+      <button class="btn" type="submit" name="add_device">Submit</button>
+    </div>
+</div>
 
     </form>
   </div>
+
+ 
+</div>
+
+
 </html>
 

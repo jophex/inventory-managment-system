@@ -352,13 +352,14 @@ tbody tr:nth-child(even){
   background-color:ghostwhite
 }
 
+ 
 thead th:nth-child(1){
-  width: 2%;
+  width: 6%;
 }
 
 
 thead th:nth-child(2){
-  width: 30%;
+  width: 20%;
 }
 
 
@@ -368,9 +369,15 @@ thead th:nth-child(3){
 }
 
 thead th:nth-child(4){
-  width: 29%;
+  width: 20%;
 
 }
+
+thead th:nth-child(5){
+  width: 10%;
+
+}
+
 
 th,td{
   padding: 10px;
