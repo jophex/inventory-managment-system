@@ -1,7 +1,8 @@
 <?php
 
-# =============== ADMIN REGISTER=================
+# =============== ADMIN REGISTER =================
 session_start();
+
 $catuser = '';
 $catphone = '';
 $catpass = '';
@@ -132,7 +133,7 @@ if ($catuser != '' || $catphone != '' || $catpass != '' || $cat_depart != '') {
 
     mysqli_close($conn);
 
-    header('Location: adminreg.php');
+    #header('Location: adminreg.php');
     exit();
 } else {
     # print "please check your details";

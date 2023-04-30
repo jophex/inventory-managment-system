@@ -1,0 +1,6 @@
+RewriteEngine On
+
+#RewriteRule ^Admin login$ adminlog.php
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^([^\.]+)$ $1.php [NC,L]

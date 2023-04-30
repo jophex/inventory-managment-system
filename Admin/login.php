@@ -1,46 +1,35 @@
 <?php
 
-session_start();
-
-
-
-
-if(isset($_POST['lgn_btn'])){
+if (isset($_POST['lgn_btn'])) {
     $user = $_POST['names'];
     $lgn_phone = $_POST['lgn_phone'];
     $lgn_pass = $_POST['lgn_pass'];
 
-    
+    $phone = '/^0[67][^346, ^02]\d{7}$/';
 
-
-    $phone = "/^0[67][^346, ^02]\d{7}$/";
-
-
-
-
-    if(!empty($user) &&!empty($lgn_phone) && !empty($lgn_pass)){
-        
+    if (!empty($user) && !empty($lgn_phone) && !empty($lgn_pass)) {
         // Check if username is empty
-        if($lgn_phone == '' || !preg_match($phone, $lgn_phone)){
-            print "done";
-        }
-        else {
-           # print "shit is working fine";
+        if ($lgn_phone == '' || !preg_match($phone, $lgn_phone)) {
+            print 'done';
+        } else {
+            # print "shit is working fine";
         }
 
         // Check if passwords are empty
-        if($lgn_pass == ''){
+        if ($lgn_pass == '') {
             echo 'Please enter  passwords';
             exit();
         }
+    }
 
-   }
-
+    $expire = time() + 3600 * 60 * 60;
+    setcookie('name', $user, $expire);
 }
 
 
+$expired = time() + 3600 * 60 * 60;
+setcookie('phone', $lgn_phone, $expired);
 #===============DATABASE=============
-
 
 $host = 'localhost';
 $user = 'root';
@@ -84,70 +73,28 @@ if (mysqli_query($conn, $sql_table)) {
     die('table not created: ' . mysqli_error($conn));
 }
 
-if($_SERVER["REQUEST_METHOD"] == "POST") {
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $lgn_phone = $_POST['lgn_phone'];
     $lgn_pass = $_POST['lgn_pass'];
 
-
-
-$sql = "SELECT * FROM admins WHERE phone = '$lgn_phone' AND passwords = '$lgn_pass'";
+    $sql = "SELECT * FROM admins WHERE phone = '$lgn_phone' AND passwords = '$lgn_pass'";
     $result = mysqli_query($conn, $sql);
-    
+
     if (mysqli_num_rows($result) == 1) {
         $row = mysqli_fetch_assoc($result);
 
         if (!password_verify($lgn_pass, $row['passwords'])) {
-            $_SESSION['phone'] = $lgn_phone;
+
+            session_start();
+            $_SESSION['adminId'] = $lgn_phone;
             header('Location: Admin page.php');
         } else {
-            echo "Invalid password";
+            echo 'Invalid password';
         }
     } else {
-        echo "User not found";
+        echo 'User not found';
     }
-
 }
-    mysqli_close($conn);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+mysqli_close($conn);
 
 ?>

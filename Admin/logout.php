@@ -4,6 +4,6 @@ session_start();
 unset($_SESSION["id"]);
 unset($_SESSION["name"]);
 session_destroy();
-header("Location:adminlog.php");
+header("Location: user login.php");
 
 ?>

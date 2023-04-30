@@ -4,6 +4,28 @@
 <body>
     <?php
 
+require_once "login.php";
+
+    print $phone;
+
+
+    print $_COOKIE['name' ]; 
+
+ 
+
+
+
+
+  
+
+    
+
+
+
+
+
+
+
 /*include("regform.html");
 
 
@@ -39,11 +61,23 @@
 
     
 
-    }
+    // }
 
 
     
     
         ?>
+
+
+<form action="another.php">
+
+        <input type="button" name="status" value="approved">
+
+        <input type="button" name="status" value="rejected">
+
+
+</form>
+
+
 </html>
 </body>

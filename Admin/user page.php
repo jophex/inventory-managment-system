@@ -1,18 +1,23 @@
-<?php include "login.php"?>
+<?php
+include 'models/security.php';
+include 'models/count.php';
+require_once "login.php";
+
+?>
 
 <!doctype html>
 <html class="h-100" lang="en">
 <head>
   <meta charset="utf-8">
   <title>ADMIN</title>
-  <link rel="stylesheet" href="theme.min.css">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="assets/css/theme.min.css">
+  <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
 <body class="bg-white text-black mt-0" data-bs-spy="scroll" data-bs-target="#navScroll">
 
   <nav id="navScroll" class="navbar navbar-dark bg-black fixed-top px-vw-5" tabindex="0">
-      <a class="navbar-brand pe-md-4 fs-4 col-12 col-md-auto text-center" href="Admin page.php">
+      <a class="navbar-brand pe-md-4 fs-4 col-12 col-md-auto text-center" href="user page.php">
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-stack"
           viewBox="0 0 16 16">
           <path
@@ -20,54 +25,50 @@
           <path
             d="m14.12 6.576 1.715.858c.22.11.22.424 0 .534l-7.568 3.784a.598.598 0 0 1-.534 0L.165 7.968a.299.299 0 0 1 0-.534l1.716-.858 5.317 2.659c.505.252 1.1.252 1.604 0l5.317-2.659z" />
         </svg>
-        <span class="ms-md-1 mt-1 fw-bolder me-md-5">Welcome <?php print $user;?></span>
+        <span class="ms-md-1 mt-1 fw-bolder me-md-5">Welcome <?php print $_COOKIE[
+            'name'
+        ]; ?></span>
       </a>
 
       <ul class="navbar-nav mx-auto mb-2 mb-lg-0 list-group list-group-horizontal">
         <li class="nav-item">
-          <a class="nav-link fs-5" href="add devices.php" aria-label="devices adding">
-            ADD DEVICES
+          <a class="nav-link fs-5" href="users/requestdevice.php" aria-label="devices adding">
+            REQUEST DEVICES
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link fs-5" href="users.php" aria-label="managing users">
-            USERS
+          <a class="nav-link fs-5" href="users/request device.php?cate=laptop" aria-label="cheking requests from users">
+            NOTIFICATIONS
           </a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link fs-5" href="#" aria-label="cheking requests from users">
-            REQUESTS
-          </a>
-        </li>
+
+        
         </ul>
         <a href="logout.php"
         class="btn btn-outline-light">
-      <small>LOG OUT LEAVE PAGE</small>
+      <small>LOG OUT</small>
     </a>
   </nav>
-  
 <form action="view_data.php" method="POST" enctype="multipart/form-data">
   <div class="ag-format-container">
     <div class="ag-courses_box">
-
       <div class="ag-courses_item" name = "laptop">
-        <a href="view_data.php" class="ag-courses-item_link">
+        <a href="view_data.php?cate=laptop" class="ag-courses-item_link">
           <div class="ag-courses-item_bg"></div>
           <div class="ag-courses-item_title">
             LAPTOPS
           </div>
-  
           <div class="ag-courses-item_date-box">
             Total Laptops: 
             <span class="ag-courses-item_date">
-              239
+              <?php echo $laptop; ?>
             </span>
+            
           </div>
         </a>
       </div>
-  
       <div class="ag-courses_item" name="desktop">
-        <a href="#" class="ag-courses-item_link">
+        <a href="view_data?cate=desktop" class="ag-courses-item_link">
           <div class="ag-courses-item_bg"></div>
           <div class="ag-courses-item_title">
             DESKTOP
@@ -76,14 +77,14 @@
           <div class="ag-courses-item_date-box">
             Total:
             <span class="ag-courses-item_date">
-              20
+            <?php echo $desktop; ?>
             </span>
           </div>
         </a>
       </div>
   
-      <div class="ag-courses_item">
-        <a href="#" class="ag-courses-item_link">
+      <div class="ag-courses_item" name="adopters">
+        <a href="view_data.php?cate=adopters" class="ag-courses-item_link">
           <div class="ag-courses-item_bg"></div>
   
           <div class="ag-courses-item_title">
@@ -93,14 +94,14 @@
           <div class="ag-courses-item_date-box">
             Total:
             <span class="ag-courses-item_date">
-              225
+            <?php echo $adopter; ?>
             </span>
           </div>
         </a>
       </div>
   
-      <div class="ag-courses_item">
-        <a href="#" class="ag-courses-item_link">
+      <div class="ag-courses_item" name="printer">
+        <a href="view_data.php?cate=printer" class="ag-courses-item_link">
           <div class="ag-courses-item_bg"></div>
   
           <div class="ag-courses-item_title">
@@ -110,14 +111,14 @@
           <div class="ag-courses-item_date-box">
               Total:
             <span class="ag-courses-item_date">
-              9
+            <?php echo $printer; ?>
             </span>
           </div>
         </a>
       </div>
   
-      <div class="ag-courses_item">
-        <a href="#" class="ag-courses-item_link">
+      <div class="ag-courses_item" name="scanner">
+        <a href="view_data.php?cate=scanner" class="ag-courses-item_link">
           <div class="ag-courses-item_bg"></div>
   
           <div class="ag-courses-item_title">
@@ -127,14 +128,14 @@
           <div class="ag-courses-item_date-box">
             Total:
             <span class="ag-courses-item_date">
-              6
+            <?php echo $scanner; ?>
             </span>
           </div>
         </a>
       </div>
 
-      <div class="ag-courses_item">
-        <a href="#" class="ag-courses-item_link">
+      <div class="ag-courses_item" name="cables">
+        <a href="view_data.php?cate=cables" class="ag-courses-item_link">
           <div class="ag-courses-item_bg"></div>
   
           <div class="ag-courses-item_title">
@@ -144,14 +145,14 @@
           <div class="ag-courses-item_date-box">
             Total:
             <span class="ag-courses-item_date">
-              202
+            <?php echo $cable; ?>
             </span>
           </div>
         </a>
       </div>
   
-      <div class="ag-courses_item">
-        <a href="#" class="ag-courses-item_link">
+      <div class="ag-courses_item" name="other devices">
+        <a href="view_data.php?cate=other devices" class="ag-courses-item_link">
           <div class="ag-courses-item_bg"></div>
   
           <div class="ag-courses-item_title">
@@ -161,7 +162,7 @@
           <div class="ag-courses-item_date-box">
             Total:
             <span class="ag-courses-item_date">
-              500
+            <?php echo $other_device; ?>
             </span>
           </div>
         </a>
@@ -170,10 +171,5 @@
     </div>
   </div>
 </form>
-
-
-
-
-
 </body>
 </html>

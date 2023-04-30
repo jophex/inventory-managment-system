@@ -15,7 +15,7 @@
    $records = $conn->query($sql);
 
    if (mysqli_query($conn, $sql)) {
-    header('Location: users.php');
+    header('Location: ../users.php');
 
  } else{
     print "not deleted";

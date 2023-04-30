@@ -71,6 +71,9 @@ if(isset($_POST['add_device'])){
     if (!$conn){
         die("connection failed: ". mysqli_connect_error());
     }
+
+    if ($conn)
+    {  
         print "connected succeffully";
 
 
@@ -91,7 +94,9 @@ if(isset($_POST['add_device'])){
         }
     
         # ================SENDING DATA TO DATABASE=====================
-        
+
+        if ($catdv!="" && $catcat != "" && $cattype != "" && $catquan != "")
+        {
         $sql = "INSERT INTO add_device VALUES ('ID', '$catdv', '$catquan', '$cattype', '$catcat')";
                                             
         #$stmt = mysqli_stmt_init($conn);
@@ -112,7 +117,16 @@ if(isset($_POST['add_device'])){
     
         #mysqli_stmt_close($stmt);
     
-    
+        
+
+        $select1 = "SELECT category, quantity FROM add_device";
+        $result = mysqli_query($conn, $select1);
+
+        if (mysqli_num_rows($result) == 1) {
+            print "working";
+        }
+            
+        
     
         if(mysqli_query($conn, $sql)){
     
@@ -124,7 +138,11 @@ if(isset($_POST['add_device'])){
     
     
         mysqli_close($conn);
+    }
 
 
+
+
+}
 
 ?>
