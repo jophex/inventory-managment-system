@@ -49,7 +49,7 @@
         .title {
             font-size: 54px;
         }
-
+        
         .links>a {
             color: #636b6f;
             padding: 0 25px;
