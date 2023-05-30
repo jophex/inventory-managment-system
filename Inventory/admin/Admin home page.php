@@ -4,6 +4,9 @@ session_start();
 
 include '../models/count.php';
 require_once 'Admin login process.php';
+include '../models/admin_security.php';
+
+
 ?>
 
 <!doctype html>

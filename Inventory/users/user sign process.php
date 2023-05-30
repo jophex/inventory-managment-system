@@ -1,8 +1,9 @@
 <?php
-include '../models/security.php';
 
 # =============== ADMIN REGISTER =================
 session_start();
+include '../models/security.php';
+
 
 
 $catuser = '';

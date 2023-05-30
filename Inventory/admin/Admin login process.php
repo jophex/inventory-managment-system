@@ -1,6 +1,8 @@
 <?php
 session_start();
 
+include '../models/admin_security.php';
+
 
 if (isset($_POST['lgn_btn'])) {
     $user = $_POST['names'];
@@ -24,8 +26,6 @@ if (isset($_POST['lgn_btn'])) {
         }
     }
 
-    $expire = time() + 3600 * 60 * 60;
-    setcookie('name', $user, $expire);
 }
 
 #===============DATABASE=============

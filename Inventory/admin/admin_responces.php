@@ -1,5 +1,7 @@
 <?php
+session_start();
 
+include '../models/admin_security.php';
 
 $host = 'localhost';
 $user = 'root';

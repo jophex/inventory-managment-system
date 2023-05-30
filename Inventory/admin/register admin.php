@@ -1,5 +1,14 @@
 <?php
-require "../models/generate_id.php";?>
+require "../models/generate_id.php";
+
+session_start();
+
+include '../models/admin_security.php';
+
+
+
+?>
+
 
 <!DOCTYPE html>
 <html lang="en">

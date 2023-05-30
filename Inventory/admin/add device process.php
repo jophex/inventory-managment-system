@@ -1,4 +1,9 @@
 <?php
+session_start();
+
+include '../models/admin_security.php';
+
+
 $catdv = "";
 $catquan = "";
 $cattype = "";

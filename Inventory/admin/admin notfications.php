@@ -1,4 +1,7 @@
 <?php
+session_start();
+
+include '../models/admin_security.php';
 include '../users/user_login_process.php';
 
 ?>
