@@ -2,7 +2,6 @@
 session_start();
 
 include '../models/admin_security.php';
-include '../users/user_login_process.php';
 
 ?>
 
@@ -17,8 +16,6 @@ include '../users/user_login_process.php';
     <link rel="stylesheet" href="../assets/css/style2.css">
     <title>NOTIFICATION PANEL</title>
 </head>
-
-<?php require_once '../users/user_login_process.php'; ?>
 
 <body style="background-color:#363E4A;">
 
@@ -76,7 +73,7 @@ include '../users/user_login_process.php';
               if (isset($_GET['cate'])) {
                   $category = $_GET['cate'];
               }
-              $id = 1;
+              $ids = 1;
               $sql = 'SELECT * FROM  Requests ORDER BY `created_at` DESC';
              # $sql = "SELECT * FROM Requests LEFT JOIN users ON users.phone = requests.user_id ORDER BY `created_at` DESC'";
 
@@ -87,23 +84,26 @@ include '../users/user_login_process.php';
 
               if ($records !== false && $records->num_rows > 0) {
                   while ($row = mysqli_fetch_array($records)) {
+                 
                       print '<tbody>';
                       print '<tr>';
-                      print '<td>' . $id++ . '</td>';
+                      print '<td>' . $ids++ . '</td>';
                       print '<td>' . $row['username'] . '</td>';
                       print '<td>' .$row['device_name'] .'<br>' .'</td>';
                       print '<td>' . $row['quantity'] . '</td>';
                       print '<td>' . $row['device_type'] . '</td>';
                       print '<td>' . $row['category'] . '</td>';
+                      
 
-                      print ' <td class="status"><span class="active"><a href="admin_responces.php?accept=true&id='.$row["username"].'">
+
+                      print ' <td class="status"><span class="active"><a href="admin_responces.php?accept=true&id='.$row['id'].'">
                       Accept 
                       </a></span></td>';
 
-                      print ' <td class="status"><span class="active"><a href="admin_responces.php?reject=true&id='.convert_uuencode($row["username"]).'">
+                      print ' <td class="status"><span class="active"><a href="admin_responces.php?reject=true&id='.$row['id'].'">
                       Reject 
                       </a></span></td>';
-                      print ' <td class="status"><span class="active"><a href="admin_responces.php?return=true&id='.convert_uuencode($row["username"]).'">
+                      print ' <td class="status"><span class="active"><a href="admin_responces.php?return=true&id='.$row['id'].'">
                       Returned 
                       </a></span></td>';
                   }

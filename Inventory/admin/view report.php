@@ -1,14 +1,11 @@
 <?php
-
 session_start();
 
-include '../models/admin_security.php';
+include '../models/admin_security.php'; 
 
 
 
 ?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -125,6 +122,33 @@ include '../models/admin_security.php';
     }
     }
 
+	$select = "SELECT COUNT(user_status) FROM `requests` WHERE user_status = 'Accepted'";
+    $query = mysqli_query($conn, $select);
+    if (mysqli_num_rows($query) > 0) {
+    while ($accepted = mysqli_fetch_assoc($query)) {
+        $accept = $accepted['COUNT(user_status)'];
+
+    }
+    }
+
+	$select = "SELECT COUNT(user_status) FROM `requests` WHERE user_status = 'Rejected'";
+    $query = mysqli_query($conn, $select);
+    if (mysqli_num_rows($query) > 0) {
+    while ($rejected = mysqli_fetch_assoc($query)) {
+        $reject = $rejected['COUNT(user_status)'];
+
+    }
+    }
+
+	$select = "SELECT COUNT(returns) FROM `requests` WHERE returns = 'Returned'";
+    $query = mysqli_query($conn, $select);
+    if (mysqli_num_rows($query) > 0) {
+    while ($return = mysqli_fetch_assoc($query)) {
+        $returned = $return['COUNT(returns)'];
+
+    }
+    }
+
     
 ?>
 
@@ -140,6 +164,7 @@ include '../models/admin_security.php';
 				<th>Total Requested Devices</th>
                 <th>Accepted Devices</th>
 				<th>Rejected Devices</th>
+				<th>Returned</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -147,8 +172,9 @@ include '../models/admin_security.php';
 				<td><?php print $users;?></td>
 				<td><?php print $devices; ?></td>
 				<td><?php print $notify?></td>
-                <td>200</td>
-				<td>50</td>
+                <td><?php print $accept?></td>
+				<td><?php print $reject?></td>
+				<td><?php print $returned?></td>
 			</tr>
 		</tbody>
 	</table>
@@ -171,13 +197,20 @@ include '../models/admin_security.php';
 				<p>Total Requested Devices</p>
 			</li>
 			<li>
-				<span>200</span>
+				<span><?php print $accept?></span>
 				<p>Accepted Devices</p>
 			</li>
 			<li>
-				<span>50</span>
+				<span><?php print $reject?></span>
 				<p>Rejected Devices</p>
-    </li>
+    		</li>
+
+			<li>
+				<span><?php print $returned?></span>
+				<p>Returned Devices</p>
+    		</li>
+
+
 
 </body>
 </html>
